@@ -6,7 +6,7 @@ Written for The Conservatory, an encampment on BitLimit Feed the Beast. A series
 
 To download the tools, a disk is required to be attached to your main device. Once you have on, run:
 
-`pastebin get YYN5pp7p installer`
+`pastebin get 0FJ5QR7V installer`
 
 `installer`
 
