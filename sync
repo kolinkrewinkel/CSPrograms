@@ -1,5 +1,12 @@
 shell.run("github kolinkrewinkel CSPrograms /disk/usr/") -- Download the program repo to the disk.
 shell.run("cd /disk/usr/CSPrograms/") -- Move into the directory for the user.
+
+-- Removal
+shell.run("rm /CSPrograms/")
+shell.run("rm /startup")
+shell.run("rm /disk/startup")
+
+-- Recopy
 shell.run("cp /disk/usr/CSPrograms/ /CSPrograms/") -- Copy the directory to the local instance for portable use.
 shell.run("cp /disk/usr/CSPrograms/startup /startup") -- Copy the startup file to the local instance.
 shell.run("cp /disk/usr/CSPrograms/startup /disk/startup") -- Copy the startup file to the local disk.
