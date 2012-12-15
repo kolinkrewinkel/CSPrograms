@@ -3,5 +3,5 @@ shell.run("mkdir usr") -- Create the storage directory
 shell.run("cd usr") -- cd in
 shell.run("pastebin get wPtGKMam github") -- Install the github downloader script
 
-shell.run("github kolinkrewinkel CSPrograms")
+shell.run("github kolinkrewinkel CSPrograms /usr/csprograms/")
 shell.run("cd /")
