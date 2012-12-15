@@ -1,4 +1,4 @@
-shell.run("github kolinkrewinkel CSPrograms /disk/usr/") -- Download the program repo to the disk.
+shell.run("/disk/usr/github kolinkrewinkel CSPrograms /disk/usr/") -- Download the program repo to the disk.
 shell.run("cd /disk/usr/CSPrograms/") -- Move into the directory for the user.
 
 -- Removal
