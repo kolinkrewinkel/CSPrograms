@@ -4,7 +4,7 @@ Written for The Conservatory, an encampment on BitLimit Feed the Beast. A series
 
 **Installation and Usage**
 
-To download the tools, a disk is required to be attached to your main device. Once you have on, run:
+To download the tools, a disk is required to be attached to your main device. Additionally, you'll need the HTTP API to be enabled. Once you have on, run:
 
 `pastebin get 0FJ5QR7V installer`
 
