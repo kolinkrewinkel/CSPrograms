@@ -1,0 +1,1 @@
+shell.run("sync") -- Alias to the sync file, so running it manually is semantically correct.
