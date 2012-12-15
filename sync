@@ -2,6 +2,7 @@ shell.run("/disk/usr/github kolinkrewinkel CSPrograms /disk/usr/") -- Download t
 shell.run("cd /disk/usr/CSPrograms/") -- Move into the directory for the user.
 
 -- Removal
+shell.run("rm /installer") -- Remove the start installer.
 shell.run("rm /CSPrograms/")
 shell.run("rm /startup")
 shell.run("rm /disk/startup")
