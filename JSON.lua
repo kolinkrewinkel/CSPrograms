@@ -489,9 +489,9 @@ grok_one = function(self, text, start, etc)
 end
 
 function OBJDEF:decode(text, etc)
-   if type(self) ~= 'table' or self.__index ~= OBJDEF then
-      OBJDEF:onDecodeError("JSON:decode must be called in method format", nil, nil, etc)
-   end
+   -- if type(self) ~= 'table' or self.__index ~= OBJDEF then
+   --    OBJDEF:onDecodeError("JSON:decode must be called in method format", nil, nil, etc)
+   -- end
 
    if text == nil then
       self:onDecodeOfNilError(string.format("nil passed to JSON:decode()"), nil, nil, etc)
