@@ -30,5 +30,5 @@ repeat
 		monitor.setCursorPos(2, y + 3)
 	end
 
-	sleep(10)
+	sleep(600)
 until done == true
