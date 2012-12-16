@@ -4,7 +4,7 @@ local monitor = peripheral.wrap("top")
 monitor.clear()
 monitor.setCursorPos(2, 1) -- Clear the monitor
 monitor.setTextScale(0.5)
-monitor.setBackgroundColor(colors.grayColor)
+monitor.setBackgroundColor(colors.gray)
 
 local response = http.get("https://api.github.com/repos/kolinkrewinkel/CSPrograms/commits") -- Get the data from GitHub
 local obj, pos, err = json.decode (response.readAll(), 1, nil) -- Decode the response
