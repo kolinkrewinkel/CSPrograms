@@ -1,0 +1,54 @@
+local args = { ... } -- Get user's arguments.
+
+if (args[1] == nil) then
+	print("Usage: quarry <size>. 2nd slot is for landmarks. Third sets the block type to be used as a catwalk.")
+	return
+end
+
+turtle.refuel()
+
+local sideLength = args[1]
+local currentSide = 0
+local currentSlot = 1
+local potentialSlots = { 3 }
+turtle.select(potentialSlots[currentSlot])
+
+for i = 2, i < 17 do
+	if (turtle.compareTo(i)) then
+		potentialSlots[i] = i
+	end
+end
+
+repeat
+	local remainder = sideLength - 1
+	repeat
+		turtle.select(potentialSlots[currentSlot])
+		turtle.placeDown()
+		turtle.dig()
+		turtle.forward()
+
+		if (remainder == sideLength - 1) then
+			turtle.turnLeft()
+			turtle.turnLeft()
+			turtle.select(2)
+			turtle.place()
+			turtle.turnRight()
+			turtle.turnRight()
+		end
+
+		turtle.digUp()
+		remainder = remainder - 1
+	until remainder == 0
+
+	turtle.turnRight()
+
+	if (currentSide == 3) then
+		turtle.digUp()
+		turtle.up()
+		turtle.select(2)
+		turtle.placeDown()
+		print("Completed quarry")
+	end
+
+	currentSide = currentSide + 1
+until currentSide == 4
