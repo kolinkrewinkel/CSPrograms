@@ -16,7 +16,7 @@ for i = 1, #obj do
 	local commitAuthor = commit["author"]["name"] -- Personal responsible
 	local commitDate = commit["author"]["date"] -- Date committed
 
-	monitor.write(commitAuthor .. " committed \"" .. commitMessage .. "\" at " .. commitDate)
+	monitor.write(commitAuthor .. " committed “" .. commitMessage .. "” at " .. commitDate)
 	local x, y = monitor.getCursorPos()
 	monitor.setCursorPos(1, y + 1)
 end
