@@ -1,4 +1,4 @@
-local json = dofile("dkjson") -- Load the parser
+local json = dofile("/CSPrograms/dkjson.lua") -- Load the parser
 
 local monitor = peripheral.wrap("top")
 monitor.clear()
