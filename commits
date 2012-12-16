@@ -10,7 +10,7 @@ repeat
 	monitor.setBackgroundColor(colors.black)
 
 	monitor.write("Recent Commits to CSPrograms")
-	monitor.setCursorPos(2, 3)
+	monitor.setCursorPos(2, 2)
 	monitor.write("----------------------------")
 	monitor.setCursorPos(2, 4)
 
