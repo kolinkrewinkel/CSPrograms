@@ -1,4 +1,5 @@
 local done = false
+print("Hold Control + T to end the program.")
 
 repeat 
 	local json = dofile("/CSPrograms/dkjson.lua") -- Load the parser
