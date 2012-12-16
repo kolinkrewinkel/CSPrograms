@@ -26,8 +26,8 @@ repeat
 	repeat
 		turtle.select(potentialSlots[currentSlot])
 
-		if (turtle.getItemCount(currentSlot) == 0) then
-			if (currentSlot + 1 > #potentialSlots) then
+		if (turtle.getItemCount(potentialSlot[currentSlot]) == 0) then
+			if (currentSlot + 1 <= #potentialSlots) then
 				currentSlot = currentSlot + 1
 				turtle.select(potentialSlots[currentSlot])
 			else
