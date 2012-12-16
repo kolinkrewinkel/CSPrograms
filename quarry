@@ -13,7 +13,7 @@ local currentSlot = 1
 local potentialSlots = { 3 }
 turtle.select(potentialSlots[currentSlot])
 
-for i = 2, i < 17 do
+for i = 2, 16 do
 	if (turtle.compareTo(i)) then
 		potentialSlots[i] = i
 	end
