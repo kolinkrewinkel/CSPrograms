@@ -56,11 +56,24 @@ repeat
 	turtle.turnRight()
 
 	if (currentSide == 3) then
+		turtle.select(potentialSlots[currentSlot])
+
+		if (turtle.getItemCount(potentialSlots[currentSlot]) == 0) then
+			if (currentSlot + 1 <= #potentialSlots) then
+				currentSlot = currentSlot + 1
+				turtle.select(potentialSlots[currentSlot])
+			else
+				print("More blocks required.")
+				return
+			end
+		end
+		
+		turtle.placeDown()
 		turtle.digUp()
 		turtle.up()
 		turtle.select(2)
 		turtle.placeDown()
-		print("Completed quarry")
+		print("Completed quarry.")
 	end
 
 	currentSide = currentSide + 1
