@@ -1,29 +1,34 @@
-local json = dofile("/CSPrograms/dkjson.lua") -- Load the parser
+local done = false
 
-local monitor = peripheral.wrap("top")
-monitor.clear()
-monitor.setCursorPos(2, 1) -- Clear the monitor
-monitor.setTextScale(0.5)
-monitor.setBackgroundColor(colors.gray)
+repeat 
+	local json = dofile("/CSPrograms/dkjson.lua") -- Load the parser
 
-monitor.write("CSPrograms on GitHub - Recent Commits...")
-monitor.setCursorPos(2, 3)
+	local monitor = peripheral.wrap("top")
+	monitor.clear()
+	monitor.setCursorPos(2, 1) -- Clear the monitor
+	monitor.setTextScale(0.5)
+	monitor.setBackgroundColor(colors.gray)
 
-local response = http.get("https://api.github.com/repos/kolinkrewinkel/CSPrograms/commits") -- Get the data from GitHub
-local obj, pos, err = json.decode (response.readAll(), 1, nil) -- Decode the response
+	monitor.write("Recent Commits to CSPrograms")
+	monitor.setCursorPos(2, 3)
 
-for i = 1, #obj do
-	local commitEvent = obj[i] -- Get the entire commit object (user + commit itself)
-	local commit = commitEvent["commit"] -- Get specific commit data.
-	
-	local commitMessage = commit["message"] -- Get the message.
-	local commitAuthor = commit["author"]["name"] -- Personal responsible
-	local commitDate = commit["author"]["date"] -- Date committed
+	local response = http.get("https://api.github.com/repos/kolinkrewinkel/CSPrograms/commits") -- Get the data from GitHub
+	local obj, pos, err = json.decode (response.readAll(), 1, nil) -- Decode the response
 
-	monitor.write("\"" .. commitMessage .. "\"") -- Write the quoted commit message.
-	local x, y = monitor.getCursorPos() -- Get current position at start of writing.
-	monitor.setCursorPos(5, y + 1) -- Indent the cursor for the date by.
-	monitor.write("by " .. commitAuthor .. " at " .. commitDate)
-	monitor.setCursorPos(2, y + 3)
-end
+	for i = 1, #obj do
+		local commitEvent = obj[i] -- Get the entire commit object (user + commit itself)
+		local commit = commitEvent["commit"] -- Get specific commit data.
+		
+		local commitMessage = commit["message"] -- Get the message.
+		local commitAuthor = commit["author"]["name"] -- Personal responsible
+		local commitDate = commit["author"]["date"] -- Date committed
 
+		monitor.write("\"" .. commitMessage .. "\"") -- Write the quoted commit message.
+		local x, y = monitor.getCursorPos() -- Get current position at start of writing.
+		monitor.setCursorPos(5, y + 1) -- Indent the cursor for the date by.
+		monitor.write("by " .. commitAuthor .. " at " .. commitDate)
+		monitor.setCursorPos(2, y + 3)
+	end
+
+	sleep(10)
+until done == true
