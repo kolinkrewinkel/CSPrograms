@@ -1,0 +1,64 @@
+------------------------------------
+--           Preparation          --
+------------------------------------
+
+local args = { ... } -- Grab the user's arguments
+local width = args[1]
+local height = args[2]
+local halfBlock = args[3]
+
+if (width == nil) or (height == nil) then -- The user didn't supply all the info required.
+	print("Usage: platform <width> <height> [half block]. In game, place a chest below the starting of your turtle, with the blocks you want used for the platform. Then, place a chest above it with the blocks you want used for the first level of the walls (this is like a brace for the turtle.) The maximum size of the area cannot allow the perimeter to exceed 944 blocks. Optionally, use this command to specify if the turtle needs to \"double place\" the blocks (slabs) - defaults to no.") -- Give directions
+	return
+end
+
+if (halfBlock == nil) then
+	halfBlock = false -- Assume they're whole blocks
+end
+
+turtle.select(1)
+turtle.refuel() -- Reset and refuel
+
+------------------------------------
+--            Bordering           --
+------------------------------------
+
+while(turtle.suckUp() == true) do end -- Grab wall blocks from chest above.
+
+local borderIndex = 0
+local selectedSlot = 1
+
+repeat -- until all sides are done
+
+	local remainder = height -- amount of blocks yet to be traversed
+
+	if (borderIndex == 2) or (borderIndex == 4) then -- change conditionally for the other axis
+		remainder = width
+	end
+	
+	repeat
+		-- check that there are enough blocks left
+		if (turtle.getItemCount(selectedSlot) == 1) then -- keep the inventory "full"
+			if (currentSlot < 16) then
+				currentSlot = currentSlot + 1
+			else 
+				print("Critical error. Current slot exceeded maximum allowed value.")
+				return
+			end
+		end
+
+		turtle.turnLeft() -- Look left
+		turtle.select(currentSlot) -- Select the potentially updated slot
+		turtle.dig() -- Dig out anything in the way
+		turtle.place() -- place
+		turtle.turnRight() -- Return to forward facing
+		turtle.forward() -- Move onwards
+
+		remainder = remainder - 1 -- decrement and continue
+
+	until remainder == 0
+
+	turtle.turnRight()
+	borderIndex = borderIndex + 1 -- Turn right and continue onwards, starting the loop section over again
+
+until borderIndex == 4
