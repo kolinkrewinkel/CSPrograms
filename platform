@@ -39,8 +39,8 @@ repeat -- until all sides are done
 	repeat
 		-- check that there are enough blocks left
 		if (turtle.getItemCount(selectedSlot) == 1) then -- keep the inventory "full"
-			if (currentSlot < 16) then
-				currentSlot = currentSlot + 1
+			if (selectedSlot < 16) then
+				selectedSlot = selectedSlot + 1
 			else 
 				print("Critical error. Current slot exceeded maximum allowed value.")
 				return
@@ -48,7 +48,7 @@ repeat -- until all sides are done
 		end
 
 		turtle.turnLeft() -- Look left
-		turtle.select(currentSlot) -- Select the potentially updated slot
+		turtle.select(selectedSlot) -- Select the potentially updated slot
 		turtle.dig() -- Dig out anything in the way
 		turtle.place() -- place
 		turtle.turnRight() -- Return to forward facing
