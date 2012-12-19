@@ -30,11 +30,13 @@ local selectedSlot = 1
 
 repeat -- until all sides are done
 
-	local remainder = height -- amount of blocks yet to be traversed
+	local remainder = height - 1 -- amount of blocks yet to be traversed
 
 	if (borderIndex == 2) or (borderIndex == 4) then -- change conditionally for the other axis
-		remainder = width
+		remainder = width - 1
 	end
+
+	local initial = remainder
 	
 	repeat
 		-- check that there are enough blocks left
@@ -47,7 +49,10 @@ repeat -- until all sides are done
 			end
 		end
 
-		turtle.turnLeft() -- Look left
+		if (remainder ~= initial) then
+			turtle.turnLeft() -- Look left
+		end
+
 		turtle.select(selectedSlot) -- Select the potentially updated slot
 		turtle.dig() -- Dig out anything in the way
 		turtle.place() -- place
@@ -58,7 +63,6 @@ repeat -- until all sides are done
 
 	until remainder == 0
 
-	turtle.turnRight()
 	borderIndex = borderIndex + 1 -- Turn right and continue onwards, starting the loop section over again
 
 until borderIndex == 4
