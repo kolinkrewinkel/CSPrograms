@@ -135,9 +135,11 @@ function place()
 
 		if (math.even(xIndex)) then
 			turtle.turnRight()
+			turtle.forward()
 			turtle.turnRight()
 		else
 			turtle.turnLeft()
+			turtle.forward()
 			turtle.turnLeft()
 		end
 
