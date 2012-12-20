@@ -87,6 +87,8 @@ function borderArea()
 		turtle.dropUp()
 		selectedSlot = selectedSlot + 1
 	until selectedSlot == 16
+
+	turtle.turnRight()
 end
 
 ------------------------------------
