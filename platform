@@ -49,7 +49,7 @@ repeat -- until all sides are done
 			end
 		end
 
-		if (remainder ~= initial) then
+		if (remainder ~= initial) or (borderIndex == 0) then -- the first time it's placed, it's not running up to the new prospective wall, thus it still needs to turn.
 			turtle.turnLeft() -- Look left
 		end
 
