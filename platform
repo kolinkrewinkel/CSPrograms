@@ -19,8 +19,28 @@ end
 turtle.select(1)
 turtle.refuel() -- Reset and refuel
 
+------------------------------------
+--            Utilities           --
+------------------------------------
+
 function math.even(n)
     return n % 2 == 0
+end
+
+function handleInventory()
+	if (turtle.getItemCount(selectedSlot) == 0) then
+		if (selectedSlot < 16) then
+			selectedSlot = selectedSlot + 1
+		else
+			while (turtle.suckDown() == false) do
+				repeat
+					turtle.forward()
+				until turtle.detect()
+
+				turtle.turnRight()
+			end
+		end
+	end
 end
 
 ------------------------------------
@@ -113,19 +133,7 @@ function place()
 	repeat
 		local yIndex = 0
 		repeat
-			if (turtle.getItemCount(selectedSlot) == 0) then
-				if (selectedSlot < 16) then
-					selectedSlot = selectedSlot + 1
-				else
-					while (turtle.suckDown() == false) do
-						repeat
-							turtle.forward()
-						until turtle.detect()
-
-						turtle.turnRight()
-					end
-				end
-			end
+			handleInventory()
 
 			turtle.select(selectedSlot)
 
@@ -136,17 +144,21 @@ function place()
 		until yIndex == height - 1
 
 		if (math.even(xIndex)) then
+			handleInventory()
 			turtle.turnRight()
 			turtle.forward()
+			turtle.placeDown()
 			turtle.turnRight()
 		else
+			handleInventory()
 			turtle.turnLeft()
 			turtle.forward()
+			turtle.placeDown()
 			turtle.turnLeft()
 		end
 
 		xIndex = xIndex + 1
-	until xIndex == width - 1
+	until xIndex == width
 end
 
 ------------------------------------
