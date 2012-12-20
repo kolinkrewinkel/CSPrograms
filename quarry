@@ -37,7 +37,11 @@ repeat
 		end
 
 		turtle.placeDown()
-		turtle.dig()
+
+		if (turtle.detect()) then
+			turtle.dig()
+		end
+
 		turtle.forward()
 
 		if (remainder == sideLength - 1) then
@@ -49,7 +53,10 @@ repeat
 			turtle.turnRight()
 		end
 
-		turtle.digUp()
+		if (turtle.detectUp()) then
+			turtle.digUp()
+		end
+
 		remainder = remainder - 1
 	until remainder == 0
 
@@ -67,9 +74,13 @@ repeat
 				return
 			end
 		end
-		
+
 		turtle.placeDown()
-		turtle.digUp()
+
+		if (turtle.detectUp()) then
+			turtle.digUp()
+		end
+		
 		turtle.up()
 		turtle.select(2)
 		turtle.placeDown()
