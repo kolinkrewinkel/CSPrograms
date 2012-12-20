@@ -145,20 +145,24 @@ function place()
 
 		if (math.even(xIndex)) then
 			handleInventory()
+			turtle.placeDown()
 			turtle.turnRight()
 			turtle.forward()
+			handleInventory()
 			turtle.placeDown()
 			turtle.turnRight()
 		else
 			handleInventory()
+			turtle.placeDown()
 			turtle.turnLeft()
 			turtle.forward()
+			handleInventory()
 			turtle.placeDown()
 			turtle.turnLeft()
 		end
 
 		xIndex = xIndex + 1
-	until xIndex == width
+	until xIndex == width - 1
 end
 
 ------------------------------------
