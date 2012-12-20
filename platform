@@ -125,6 +125,8 @@ function place()
 				end
 			end
 
+			turtle.select(selectedSlot)
+
 			turtle.placeDown()
 			turtle.forward()
 
