@@ -160,7 +160,6 @@ function place()
 			turtle.placeDown()
 			turtle.turnLeft()
 		end
-		print(xIndex)
 
 		xIndex = xIndex + 1
 	until xIndex >= width 
