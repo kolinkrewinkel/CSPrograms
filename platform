@@ -56,6 +56,11 @@ function borderArea()
 
 			if (remainder ~= initial) or (borderIndex == 0) then -- the first time it's placed, it's not running up to the new prospective wall, thus it still needs to turn.
 				turtle.turnLeft() -- Look left
+			else
+				turtle.turnLeft()
+				turtle.dig()
+				turtle.place()
+				turtle.turnRight()
 			end
 
 			turtle.select(selectedSlot) -- Select the potentially updated slot
@@ -70,7 +75,7 @@ function borderArea()
 
 			remainder = remainder - 1 -- decrement and continue
 
-		until remainder + 1 == 0
+		until remainder == 0
 
 		borderIndex = borderIndex + 1 -- Turn right and continue onwards, starting the loop section over again
 
