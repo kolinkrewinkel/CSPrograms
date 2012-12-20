@@ -19,50 +19,129 @@ end
 turtle.select(1)
 turtle.refuel() -- Reset and refuel
 
+function math.even(n)
+    return n % 2 == 0
+end
+
 ------------------------------------
 --            Bordering           --
 ------------------------------------
 
-while(turtle.suckUp() == true) do end -- Grab wall blocks from chest above.
+function borderArea()
+	while(turtle.suckUp() == true) do end -- Grab wall blocks from chest above.
 
-local borderIndex = 0
-local selectedSlot = 1
+	local borderIndex = 0
+	local selectedSlot = 1
 
-repeat -- until all sides are done
+	repeat -- until all sides are done
 
-	local remainder = height - 1 -- amount of blocks yet to be traversed
+		local remainder = height - 1 -- amount of blocks yet to be traversed
 
-	if (borderIndex == 2) or (borderIndex == 4) then -- change conditionally for the other axis
-		remainder = width - 1
-	end
+		if (borderIndex == 2) or (borderIndex == 4) then -- change conditionally for the other axis
+			remainder = width - 1
+		end
 
-	local initial = remainder
-	
-	repeat
-		-- check that there are enough blocks left
-		if (turtle.getItemCount(selectedSlot) == 1) then -- keep the inventory "full"
-			if (selectedSlot < 16) then
-				selectedSlot = selectedSlot + 1
-			else 
-				print("Critical error. Current slot exceeded maximum allowed value.")
-				return
+		local initial = remainder
+		
+		repeat
+			-- check that there are enough blocks left
+			if (turtle.getItemCount(selectedSlot) == 1) then -- keep the inventory "full"
+				if (selectedSlot < 16) then
+					selectedSlot = selectedSlot + 1
+				else 
+					print("Critical error. Current slot exceeded maximum allowed value.")
+					return
+				end
 			end
+
+			if (remainder ~= initial) or (borderIndex == 0) then -- the first time it's placed, it's not running up to the new prospective wall, thus it still needs to turn.
+				turtle.turnLeft() -- Look left
+			end
+
+			turtle.select(selectedSlot) -- Select the potentially updated slot
+			
+			-- if (turtle.detect()) then
+				turtle.dig() -- Dig out anything in the way
+			-- end
+
+			turtle.place() -- place
+			turtle.turnRight() -- Return to forward facing
+			turtle.forward() -- Move onwards
+
+			remainder = remainder - 1 -- decrement and continue
+
+		until remainder == 0
+
+		borderIndex = borderIndex + 1 -- Turn right and continue onwards, starting the loop section over again
+
+	until borderIndex == 4
+
+	selectedSlot = 1 -- Reset for the dropoff
+	repeat
+		turtle.select(selectedSlot)
+		if (turtle.dropUp() == false) then
+			print("Could not deposit all items. This is a critical error.")
+			return
 		end
 
-		if (remainder ~= initial) or (borderIndex == 0) then -- the first time it's placed, it's not running up to the new prospective wall, thus it still needs to turn.
-			turtle.turnLeft() -- Look left
+		selectedSlot = selectedSlot + 1
+	until selectedSlot == 16
+end
+
+------------------------------------
+--             Placing            --
+------------------------------------
+
+function place()
+
+	selectedSlot = 1
+	repeat
+		turtle.suckDown()
+		selectedSlot = selectedSlot + 1
+	until selectedSlot == 16
+
+	local xIndex = 0
+
+	repeat
+		local yIndex = 0
+		repeat
+			if (turtle.getItemCount(selectedSlot) == 0) then
+				if (selectedSlot < 16) then
+					selectedSlot = selectedSlot + 1
+				else
+					while (!turtle.suckDown()) do
+						repeat
+							turtle.forward()
+						until turtle.detect()
+
+						turtle.turnRight()
+					end
+				end
+			end
+
+			turtle.placeDown()
+			turtle.forward()
+
+			yIndex = yIndex + 1
+		until yIndex == height
+
+		if (math.even(xIndex)) then
+			turtle.turnRight()
+			turtle.turnRight()
+		else
+			turtle.turnLeft()
+			turtle.turnLeft()
 		end
 
-		turtle.select(selectedSlot) -- Select the potentially updated slot
-		turtle.dig() -- Dig out anything in the way
-		turtle.place() -- place
-		turtle.turnRight() -- Return to forward facing
-		turtle.forward() -- Move onwards
+		xIndex = xIndex + 1
+	until xIndex == width
+end
 
-		remainder = remainder - 1 -- decrement and continue
+------------------------------------
+--              Main              --
+------------------------------------
 
-	until remainder == 0
-
-	borderIndex = borderIndex + 1 -- Turn right and continue onwards, starting the loop section over again
-
-until borderIndex == 4
+function main()
+	borderArea()
+	place()
+end
