@@ -131,7 +131,7 @@ function place()
 			turtle.forward()
 
 			yIndex = yIndex + 1
-		until yIndex == height
+		until yIndex == height - 1
 
 		if (math.even(xIndex)) then
 			turtle.turnRight()
