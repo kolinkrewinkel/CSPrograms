@@ -103,10 +103,10 @@ function place()
 		selectedSlot = selectedSlot + 1
 	until selectedSlot == 16
 
-	local xIndex = 0
+	local xIndex = 1
 
 	repeat
-		local yIndex = 0
+		local yIndex = 1
 		repeat
 			if (turtle.getItemCount(selectedSlot) == 0) then
 				if (selectedSlot < 16) then
