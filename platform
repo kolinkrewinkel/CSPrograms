@@ -162,7 +162,7 @@ function place()
 		end
 
 		xIndex = xIndex + 1
-	until xIndex == width - 1
+	until xIndex == width 
 end
 
 ------------------------------------
