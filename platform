@@ -109,7 +109,7 @@ function place()
 				if (selectedSlot < 16) then
 					selectedSlot = selectedSlot + 1
 				else
-					while (!turtle.suckDown()) do
+					while (turtle.suckDown() == false) do
 						repeat
 							turtle.forward()
 						until turtle.detect()
