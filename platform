@@ -70,7 +70,7 @@ function borderArea()
 
 			remainder = remainder - 1 -- decrement and continue
 
-		until remainder == 0
+		until remainder + 1 == 0
 
 		borderIndex = borderIndex + 1 -- Turn right and continue onwards, starting the loop section over again
 
