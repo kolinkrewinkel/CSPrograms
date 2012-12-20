@@ -84,11 +84,7 @@ function borderArea()
 	selectedSlot = 1 -- Reset for the dropoff
 	repeat
 		turtle.select(selectedSlot)
-		if (turtle.dropUp() == false) then
-			print("Could not deposit all items. This is a critical error.")
-			return
-		end
-
+		turtle.dropUp()
 		selectedSlot = selectedSlot + 1
 	until selectedSlot == 16
 end
