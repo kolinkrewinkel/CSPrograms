@@ -39,6 +39,10 @@ function handleInventory()
 
 				turtle.turnRight()
 			end
+
+			turtle.refuel()
+
+			while(turtle.suckDown() == false) do end -- Re-refill
 		end
 	end
 end
@@ -115,6 +119,17 @@ end
 --             Placing            --
 ------------------------------------
 
+function placeBlockNow()
+	turtle.select(selectedSlot)
+	handleInventory()
+	turtle.placeDown()
+	
+	if (halfBlock) then
+		handleInventory()
+		turtle.placeDown()
+	end
+end
+
 function place()
 
 	selectedSlot = 1
@@ -133,31 +148,23 @@ function place()
 	repeat
 		local yIndex = 0
 		repeat
-			handleInventory()
-
-			turtle.select(selectedSlot)
-
-			turtle.placeDown()
+			placeDownNow()
 			turtle.forward()
 
 			yIndex = yIndex + 1
 		until yIndex == height - 1
 
 		if (math.even(xIndex)) then
-			handleInventory()
-			turtle.placeDown()
+			placeDownNow()
 			turtle.turnRight()
 			turtle.forward()
-			handleInventory()
-			turtle.placeDown()
+			placeDownNow()
 			turtle.turnRight()
 		else
-			handleInventory()
-			turtle.placeDown()
+			placeDownNow()
 			turtle.turnLeft()
 			turtle.forward()
-			handleInventory()
-			turtle.placeDown()
+			placeDownNow()
 			turtle.turnLeft()
 		end
 
