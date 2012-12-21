@@ -148,23 +148,23 @@ function place()
 	repeat
 		local yIndex = 0
 		repeat
-			placeDownNow()
+			placeBlockNow()
 			turtle.forward()
 
 			yIndex = yIndex + 1
 		until yIndex == height - 1
 
 		if (math.even(xIndex)) then
-			placeDownNow()
+			placeBlockNow()
 			turtle.turnRight()
 			turtle.forward()
-			placeDownNow()
+			placeBlockNow()
 			turtle.turnRight()
 		else
-			placeDownNow()
+			placeBlockNow()
 			turtle.turnLeft()
 			turtle.forward()
-			placeDownNow()
+			placeBlockNow()
 			turtle.turnLeft()
 		end
 
