@@ -6,16 +6,21 @@ local args = { ... } -- Grab the user's arguments
 local width = tonumber(args[1])
 local height = tonumber(args[2])
 local halfBlock = args[3]
+local skipBorder = args[4]
 local xIndex = 0
 local yIndex = 0
 
 if (width == nil) or (height == nil) then -- The user didn't supply all the info required.
-	print("Usage: platform <width> <height> [half block]. In game, place a chest below the starting of your turtle, with the blocks you want used for the platform. Then, place a chest above it with the blocks you want used for the first level of the walls (this is like a brace for the turtle.) The maximum size of the area cannot allow the perimeter to exceed 944 blocks. Optionally, use this command to specify if the turtle needs to \"double place\" the blocks (slabs) - defaults to no.") -- Give directions
+	print("Usage: platform <width> <height> [half block] [skipBorder]. In game, place a chest below the starting of your turtle, with the blocks you want used for the platform. Then, place a chest above it with the blocks you want used for the first level of the walls (this is like a brace for the turtle.) The maximum size of the area cannot allow the perimeter to exceed 944 blocks. Optionally, use this command to specify if the turtle needs to \"double place\" the blocks (slabs) - defaults to no.") -- Give directions
 	return
 end
 
 if (halfBlock == nil) then
 	halfBlock = false -- Assume they're whole blocks
+end
+
+if (skipBorder == nil) then
+	skipBorder = false
 end
 
 turtle.select(1)
@@ -172,7 +177,7 @@ function place()
 
 		xIndex = xIndex + 1
 		yIndex = 0
-		print(xIndex .. "of " .. width)
+		print(xIndex .. " of " .. width)
 	until xIndex == width 
 end
 
@@ -181,7 +186,10 @@ end
 ------------------------------------
 
 function main()
-	borderArea()
+	if (skipBorder == false) then
+		borderArea()
+	end
+	
 	place()
 
 	print("Completed platform.")
