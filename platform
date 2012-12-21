@@ -152,7 +152,7 @@ function place()
 	repeat
 		turtle.suckDown()
 		selectedSlot = selectedSlot + 1
-	until selectedSlot == 16
+	until selectedSlot == 17
 
 	selectedSlot = 1
 	turtle.select(selectedSlot)
