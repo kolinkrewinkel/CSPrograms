@@ -40,7 +40,7 @@ end
 
 function handleInventory()
 	if (turtle.getItemCount(selectedSlot) == 0) then
-		if (selectedSlot < 17) then
+		if (selectedSlot < 16) then
 			selectedSlot = selectedSlot + 1
 		else
 			while (turtle.suckDown() == false) do
@@ -124,7 +124,7 @@ function borderArea()
 		turtle.select(selectedSlot)
 		turtle.dropUp()
 		selectedSlot = selectedSlot + 1
-	until selectedSlot == 16
+	until selectedSlot == 17
 
 	turtle.turnRight()
 end
