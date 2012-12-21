@@ -1,0 +1,85 @@
+local args = { ... }
+local rowGap = tonumber(args[1])
+local columnGap = tonumber(args[2])
+local rowCount = tonumber(args[3])
+local columnCount = tonumber(args[4])
+
+if (rowGap == nil) or (columnGap == nil) or (rowCount == nil) or (columnCount == nil) then
+	print("Usage: luminate <row gap> <column gap> <row count> <column count>")
+	return
+end
+
+------------------------------------
+--            Utilities           --
+------------------------------------
+
+function math.even(n)
+    return n % 2 == 0
+end
+
+function refuelAll()
+	local index = 1
+
+	repeat
+		turtle.select(index)
+		turtle.refuel()
+		index = index + 1
+	until index == 17
+
+	turtle.select(1)
+end
+
+function selectNextSlot()
+	local index = 1
+
+	repeat
+		if (turtle.getItemCount(index) > 0) then
+			turtle.select(index)
+			return
+		end
+
+		index = index + 1
+	until index == 17
+end
+
+function place()
+	local completedColumns = 0
+	repeat
+		local completedRows = 0
+
+		repeat
+			
+			
+			completedRows = completedRows + 1
+		until completedRows == rowCount
+
+		if (math.even(completedColumns)) then
+			turtle.turnRight()
+		else
+			turtle.turnLeft()
+		end
+
+		local gapTraversed = 0
+		repeat
+			turtle.forward()
+			gapTraversed = gapTraversed + 1
+		until gapTraversed == columnGap
+
+		if (math.even(completedColumns)) then
+			turtle.turnRight()
+		else
+			turtle.turnLeft()
+		end
+
+		completedColumns = completedColumns + 1
+	until completedColumns == columnCount
+
+
+end
+
+function main()
+	refuelAll()
+	place()
+end
+
+main()
