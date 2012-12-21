@@ -23,8 +23,12 @@ if (skipBorder == nil) then
 	skipBorder = false
 end
 
-turtle.select(1)
-turtle.refuel() -- Reset and refuel
+local idx = 1
+repeat
+	turtle.select(idx)
+	turtle.refuel() -- Reset and refuel
+	idx = idx + 1
+until idx == 17
 
 ------------------------------------
 --            Utilities           --
@@ -36,7 +40,7 @@ end
 
 function handleInventory()
 	if (turtle.getItemCount(selectedSlot) == 0) then
-		if (selectedSlot < 16) then
+		if (selectedSlot < 17) then
 			selectedSlot = selectedSlot + 1
 		else
 			while (turtle.suckDown() == false) do
@@ -189,7 +193,7 @@ function main()
 	if (skipBorder == false) then
 		borderArea()
 	end
-	
+
 	place()
 
 	print("Completed platform.")
