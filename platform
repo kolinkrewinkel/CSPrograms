@@ -66,7 +66,7 @@ function borderArea()
 
 		local remainder = height - 1 -- amount of blocks yet to be traversed
 
-		if (borderIndex == 2) or (borderIndex == 4) then -- change conditionally for the other axis
+		if (borderIndex == 1) or (borderIndex == 3) then -- change conditionally for the other axis
 			remainder = width - 1
 		end
 
@@ -172,6 +172,7 @@ function place()
 
 		xIndex = xIndex + 1
 		yIndex = 0
+		print(xIndex .. "of " .. width)
 	until xIndex == width 
 end
 
