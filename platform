@@ -158,6 +158,7 @@ function place()
 	turtle.select(selectedSlot)
 
 	repeat
+
 		repeat
 			placeBlockNow()
 			turtle.forward()
@@ -175,6 +176,18 @@ function place()
 			placeBlockNow()
 			turtle.turnLeft()
 			turtle.forward()
+
+			if (xIndex > 0) then
+				local itrcount = 0
+				while(turtle.detectDown() == false) do
+					if (itrcount > 0) then
+						xIndex = xIndex + 1
+					end
+					
+					itrcount = itrcount + 1
+				end
+			end
+
 			placeBlockNow()
 			turtle.turnLeft()
 		end
