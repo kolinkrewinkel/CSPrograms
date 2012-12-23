@@ -182,20 +182,21 @@ function place()
 			if (xIndex > 0) then
 				
 				iterated = true
-				while(turtle.detectDown()) do
+
+				repeat
 					turtle.forward()
 					xIndex = xIndex + 1
-					print(xIndex .. " of " .. width)
-				end
+					print(xIndex .. " of " .. width)	
+				until turtle.detectDown() == false
 			end
 
 			placeBlockNow()
 			turtle.turnLeft()
 		end
 
-		if (iterated == false) then
+		-- if (iterated == false) then
 			xIndex = xIndex + 1
-		end
+		-- end
 
 		yIndex = 0
 		print(xIndex .. " of " .. width)
