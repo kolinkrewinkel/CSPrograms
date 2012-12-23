@@ -179,7 +179,7 @@ function place()
 			turtle.turnLeft()
 			turtle.forward()
 
-			if (xIndex > 0) then
+			if (xIndex > 0) and (turtle.detectDown() == true) then
 				
 				iterated = true
 
