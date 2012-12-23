@@ -159,6 +159,8 @@ function place()
 
 	repeat
 
+		local iterated = false
+
 		repeat
 			placeBlockNow()
 			turtle.forward()
@@ -178,14 +180,12 @@ function place()
 			turtle.forward()
 
 			if (xIndex > 0) then
-				-- local itrcount = 0
+				
+				iterated = true
 				while(turtle.detectDown()) do
 					turtle.forward()
-					-- if (itrcount > 0) then
-						xIndex = xIndex + 1
-					-- end
-
-					-- itrcount = itrcount + 1
+					xIndex = xIndex + 1
+					print(xIndex .. " of " .. width)
 				end
 			end
 
@@ -193,7 +193,10 @@ function place()
 			turtle.turnLeft()
 		end
 
-		xIndex = xIndex + 1
+		if (iterated == false) then
+			xIndex = xIndex + 1
+		end
+
 		yIndex = 0
 		print(xIndex .. " of " .. width)
 	until xIndex == width 
