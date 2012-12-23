@@ -180,6 +180,7 @@ function place()
 			if (xIndex > 0) then
 				local itrcount = 0
 				while(turtle.detectDown()) do
+					turtle.forward()
 					if (itrcount > 0) then
 						xIndex = xIndex + 1
 					end
