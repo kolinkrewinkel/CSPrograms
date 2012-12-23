@@ -194,9 +194,9 @@ function place()
 			turtle.turnLeft()
 		end
 
-		-- if (iterated == false) then
+		if (iterated == false) then
 			xIndex = xIndex + 1
-		-- end
+		end
 
 		yIndex = 0
 		print(xIndex .. " of " .. width)
