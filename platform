@@ -179,11 +179,11 @@ function place()
 
 			if (xIndex > 0) then
 				local itrcount = 0
-				while(turtle.detectDown() == false) do
+				while(turtle.detectDown()) do
 					if (itrcount > 0) then
 						xIndex = xIndex + 1
 					end
-					
+
 					itrcount = itrcount + 1
 				end
 			end
