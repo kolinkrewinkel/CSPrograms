@@ -38,26 +38,38 @@ function math.even(n)
     return n % 2 == 0
 end
 
-function handleInventory()
-	if (turtle.getItemCount(selectedSlot) == 0) then
-		if (selectedSlot < 16) then
-			selectedSlot = selectedSlot + 1
-		else
-			while (turtle.suckDown() == false) do
-				repeat
-					turtle.forward()
-				until turtle.detect()
+function selectNextSlot()
+	local index = 1
 
-				turtle.turnRight()
-			end
-
-			turtle.refuel()
-
-			while(turtle.suckDown() == false) do end -- Re-refill
-
-			xIndex = 0
-			yIndex = 0
+	repeat
+		if (turtle.getItemCount(index) > 0) then
+			turtle.select(index)
+			selectedSlot = index
+			return
 		end
+
+		index = index + 1
+	until index == 17
+end
+
+function handleInventory()
+	selectNextSlot()
+
+	if (turtle.getItemCount(selectedSlot) == 0) then
+		while (turtle.suckDown() == false) do
+			repeat
+				turtle.forward()
+			until turtle.detect()
+
+			turtle.turnRight()
+		end
+
+		turtle.refuel()
+
+		while(turtle.suckDown() == false) do end -- Re-refill
+
+		xIndex = 0
+		yIndex = 0
 	end
 end
 
