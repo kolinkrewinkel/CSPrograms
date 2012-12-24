@@ -30,7 +30,7 @@ repeat
 			if (currentSlot + 1 <= #potentialSlots) then
 				currentSlot = currentSlot + 1
 				turtle.select(potentialSlots[currentSlot])
-			else
+			else if (turtle.detectDown() == false)
 				print("More blocks required.")
 				return
 			end
