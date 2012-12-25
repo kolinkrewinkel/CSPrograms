@@ -38,6 +38,10 @@ function math.even(n)
     return n % 2 == 0
 end
 
+function round(what, precision)
+   return math.floor(what*math.pow(10,precision)+0.5) / math.pow(10,precision)
+end
+
 function selectNextSlot()
 	local index = 1
 
@@ -199,7 +203,7 @@ function place()
 					turtle.forward()
 					xIndex = xIndex + 1
 
-					local percent = (xIndex / width) * 100
+					local percent = round((xIndex / width) * 100, 0)
 					print(xIndex .. " of " .. width .. " (" .. percent .. "%" .. ")")	
 				until turtle.detectDown() == false
 			end
@@ -213,7 +217,8 @@ function place()
 		end
 
 		yIndex = 0
-		local percent = (xIndex / width) * 100
+
+		local percent = round((xIndex / width) * 100, 0)
 		print(xIndex .. " of " .. width .. " (" .. percent .. "%" .. ")")	
 	until xIndex == width 
 end
