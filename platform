@@ -162,6 +162,9 @@ end
 
 function place()
 
+	term.clear()
+	term.setCursorPos(1,2)
+
 	selectedSlot = 1
 	turtle.select(selectedSlot)
 
