@@ -198,7 +198,7 @@ function place()
 				repeat
 					turtle.forward()
 					xIndex = xIndex + 1
-					print(xIndex .. " of " .. width)	
+					print(xIndex .. " of " .. width .. " (" .. xIndex / width .. "%" .. ")")	
 				until turtle.detectDown() == false
 			end
 
@@ -211,7 +211,7 @@ function place()
 		end
 
 		yIndex = 0
-		print(xIndex .. " of " .. width)
+		print(xIndex .. " of " .. width .. " (" .. xIndex / width .. "%" .. ")")	
 	until xIndex == width 
 end
 
