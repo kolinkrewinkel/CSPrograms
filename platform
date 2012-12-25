@@ -212,6 +212,7 @@ function place()
 
 					local percent = round((xIndex / width) * 100, 0)
 					term.clearLine()
+					term.setCursorPos(1,3)
 					term.write(xIndex .. " of " .. width .. " (" .. percent .. "%" .. ")")	
 				until turtle.detectDown() == false
 			end
@@ -228,6 +229,7 @@ function place()
 
 		local percent = round((xIndex / width) * 100, 0)
 		term.clearLine()
+		term.setCursorPos(1,3)
 		term.write(xIndex .. " of " .. width .. " (" .. percent .. "%" .. ")")	
 	until xIndex == width 
 end
