@@ -1,0 +1,14 @@
+local refuelIdx = 1
+
+repeat
+	turtle.select(refuelIdx)
+	turtle.refuel()
+	refuelIdx = refuelIdx + 1
+until refuelIdx == 17
+
+turtle.select(1)
+
+local done = false
+while (done ~= true) do
+	turtle.attack()
+end
